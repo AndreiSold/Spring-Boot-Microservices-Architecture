@@ -18,4 +18,5 @@ Relevant URLs:
 2) http://localhost:9295/hystrix/monitor (Hystrix dashboard)
 3) http://localhost:9191/actuator/hystrix.stream (Actuator stream of data packets)
 
-## Observation: at the moment the hystrix dashboard is not working properly and the config server + zipkin logs have not been implemented
+### Observation: at the moment the hystrix dashboard is not working properly and the config server + zipkin logs have not been implemented
+### TODOs: replace the hystrix libraries with resilience4j
