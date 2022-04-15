@@ -2,6 +2,9 @@ server:
   port: 9191
 
 spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
   application:
     name: API-GATEWAY
   cloud:
@@ -14,7 +17,7 @@ spring:
           filters:
             - name: CircuitBreaker
               args:
-                name: USER-SERVICE
+                name: userService
                 fallbackuri: forward:/userServiceFallback
         - id: DEPARTMENT-SERVICE
           uri: lb://DEPARTMENT-SERVICE
@@ -23,22 +26,28 @@ spring:
           filters:
             - name: CircuitBreaker
               args:
-                name: DEPARTMENT-SERVICE
+                name: departmentService
                 fallbackuri: forward:/departmentServiceFallback
 
-hystrix:
-  command:
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 4000
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+      departmentService:
+        registerHealthIndicator: true
 
 management:
+  health:
+    circuitbreakers:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, info, health
+        include: health
+  endpoint:
+    health:
+      show-details: always
 
 eureka:
   client:
