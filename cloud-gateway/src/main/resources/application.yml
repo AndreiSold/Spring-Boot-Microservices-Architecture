@@ -31,27 +31,25 @@ spring:
 
 resilience4j:
   circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+        # Here we can have common recorded and ignored exceptions
     instances:
       userService:
-        registerHealthIndicator: true
-        eventConsumerBufferSize: 10
-        failureRateThreshold: 50
-        minimumNumberOfCalls: 5
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        slidingWindowType: COUNT_BASED
+        baseConfig: default
+        # Here we can have individual exception handling or other individual settings
       departmentService:
-        registerHealthIndicator: true
-        eventConsumerBufferSize: 10
-        failureRateThreshold: 50
-        minimumNumberOfCalls: 5
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        waitDurationInOpenState: 5s
-        permittedNumberOfCallsInHalfOpenState: 3
-        slidingWindowSize: 10
-        slidingWindowType: COUNT_BASED
+        baseConfig: default
+        # Here we can have individual exception handling or other individual settings
 
 management:
   health:
