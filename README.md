@@ -1,4 +1,6 @@
 Flow followed from this astounding YouTube tutorial: https://www.youtube.com/watch?v=BnknNTN8icw
+Resilience4J configuration examples: https://github.com/resilience4j/resilience4j-spring-boot2-demo/blob/master/src/main/resources/application.yml
+Resilience4J docs: https://resilience4j.readme.io/docs/getting-started-3
 
 Important components:
 
