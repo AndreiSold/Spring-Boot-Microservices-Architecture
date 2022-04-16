@@ -19,3 +19,5 @@ Relevant URLs:
 3) http://localhost:9191/actuator/hystrix.stream (Actuator stream of data packets)
 
 ### Observation: at the moment the actuator is not updating properly and the config server + zipkin logs have not been implemented
+
+### The fallback methods of the gateway are ONLY triggering when the services are OFFLINE
